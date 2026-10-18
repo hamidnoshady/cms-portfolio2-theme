@@ -1,0 +1,9 @@
+# Dependencies and generated browser cache
+node_modules/
+.cache/
+recordings/.capture/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp

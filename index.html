@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Studio Archive — selected work</title>
+    <meta
+      name="description"
+      content="A portfolio theme: a mosaic of work, and a project view with a slow, coordinated opening animation."
+    />
+    <meta name="color-scheme" content="light" />
+
+    <link
+      rel="preload"
+      href="./assets/fonts/inter-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./assets/css/tokens.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/mosaic.css" />
+    <link rel="stylesheet" href="./assets/css/project.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#work">Skip to the work</a>
+
+    <header class="site-head shell">
+      <a class="site-head__brand" href="./" data-site-name>Studio Archive</a>
+      <div class="site-head__meta">
+        <span data-site-descriptor>Selected work</span>
+        <span data-site-count>—</span>
+      </div>
+    </header>
+
+    <main id="work">
+      <h1 class="visually-hidden">Selected work</h1>
+      <div class="mosaic" data-mosaic></div>
+    </main>
+
+    <footer class="site-foot shell">
+      <span>© 2026 Studio Archive</span>
+      <span>Open a project — the title belongs to the top of the page</span>
+    </footer>
+
+    <!-- The project view. The panel is hidden until a project is opened, and
+         the scroller inside it is the only scroll container of the panel. -->
+    <div
+      class="project"
+      data-project
+      hidden
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-title-a11y"
+    >
+      <div class="project__backdrop" data-backdrop></div>
+
+      <div class="project__panel" data-panel tabindex="-1">
+        <div class="project__scroller" data-scroller>
+          <!-- Sticky inside the scroller: SHARE and CLOSE stay at the
+               top-right while the case study scrolls underneath them. -->
+          <div class="project__controls" data-controls>
+            <div class="project__control-bar">
+              <button
+                class="control"
+                type="button"
+                data-share-toggle
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="control__glyph" aria-hidden="true">↗</span>Share
+              </button>
+              <button class="control control--close" type="button" data-close>
+                <span class="control__glyph" aria-hidden="true">✕</span>Close
+              </button>
+
+              <div class="share-menu" data-share-menu hidden>
+                <button class="share-menu__item" type="button" data-share-copy>
+                  Copy link <span aria-hidden="true">⌘C</span>
+                </button>
+                <a
+                  class="share-menu__item"
+                  href="https://x.com/intent/post"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Post to X <span aria-hidden="true">↗</span>
+                </a>
+                <a
+                  class="share-menu__item"
+                  href="https://www.linkedin.com/sharing/share-offsite/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Share on LinkedIn <span aria-hidden="true">↗</span>
+                </a>
+                <p class="share-menu__note" data-share-note></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- The title is the first block of the scrollable content. It is
+               not fixed and not sticky: it belongs to the top of the project
+               and scrolls away with it. -->
+          <div class="project__title" data-title>
+            <p class="project__kicker" data-kicker></p>
+            <h1 class="visually-hidden" id="project-title-a11y" data-title-a11y></h1>
+            <div class="project__marquee" data-marquee aria-hidden="true">
+              <div class="project__marquee-track" data-marquee-track></div>
+            </div>
+          </div>
+
+          <!-- The outer wrapper that carries the entrance. Everything below
+               the title lives inside it, so one transform moves the whole
+               case study. The transform is handed back when it settles. -->
+          <div class="project__stage" data-stage>
+            <div class="project__meta" data-meta></div>
+            <p class="project__intro" data-intro></p>
+            <div class="project__body" data-body></div>
+
+            <button class="project__next" type="button" data-next>
+              <span class="project__next-label">Next project</span>
+              <span data-next-title></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./assets/js/main.js"></script>
+  </body>
+</html>

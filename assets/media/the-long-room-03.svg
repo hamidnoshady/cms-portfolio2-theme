@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 720" width="1680" height="720" role="img">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0e0d6" />
+      <stop offset="1" stop-color="#d8a288" stop-opacity="0.8" />
+    </linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+  </defs>
+  <g><rect width="1680" height="720" fill="url(#g)" /><g transform="translate(81 1) scale(1.28)"><path d="M 1210.5 293 A 253.5 253.5 0 0 1 1717.5 293" fill="none" stroke="#d8a288" stroke-opacity="0.56" stroke-width="20" stroke-linecap="round" /><circle cx="22" cy="598" r="265" fill="none" stroke="#a4553a" stroke-opacity="0.85" stroke-width="31" /><circle cx="97" cy="866" r="231" fill="#d8a288" fill-opacity="0.60" /><circle cx="270" cy="465" r="246" fill="none" stroke="#a4553a" stroke-opacity="0.77" stroke-width="31" /><path d="M 1148.5 710 A 114.5 114.5 0 0 1 1377.5 710" fill="none" stroke="#2a1712" stroke-opacity="0.52" stroke-width="19" stroke-linecap="round" /><circle cx="1109" cy="534" r="217" fill="none" stroke="#d8a288" stroke-opacity="0.83" stroke-width="26" /></g></g>
+  <line x1="0" y1="72" x2="1680" y2="72" stroke="#2a1712" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="144" x2="1680" y2="144" stroke="#2a1712" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="216" x2="1680" y2="216" stroke="#2a1712" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="288" x2="1680" y2="288" stroke="#2a1712" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="360" x2="1680" y2="360" stroke="#2a1712" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="432" x2="1680" y2="432" stroke="#2a1712" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="504" x2="1680" y2="504" stroke="#2a1712" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="576" x2="1680" y2="576" stroke="#2a1712" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="648" x2="1680" y2="648" stroke="#2a1712" stroke-opacity="0.08" stroke-width="1" />
+  <rect width="1680" height="720" filter="url(#grain)" opacity="0.055" />
+  <text x="1632" y="676" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="34" letter-spacing="6" fill="#2a1712" fill-opacity="0.4">12</text>
+</svg>

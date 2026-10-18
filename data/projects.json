@@ -1,0 +1,477 @@
+{
+  "site": {
+    "name": "Studio Archive",
+    "descriptor": "Selected work 2019 — 2026",
+    "count": "9 projects"
+  },
+  "projects": [
+    {
+      "id": "sable-and-salt",
+      "title": "Sable & Salt",
+      "kicker": "Hospitality identity",
+      "client": "Sable & Salt",
+      "year": "2025",
+      "role": "Identity, Art direction",
+      "disciplines": "Brand system, Packaging, Signage",
+      "summary": "A coastal restaurant group asked for an identity that could survive salt, sun and a crowded table. We built a system around a single drawn rule that re-draws itself on every surface it lands on.",
+      "span": 6,
+      "art": "assets/media/sable-and-salt-01.svg",
+      "body": [
+        {
+          "type": "media",
+          "src": "assets/media/sable-and-salt-01.svg",
+          "ratio": "wide",
+          "alt": "Sable & Salt identity — drawn rule across a warm ground",
+          "caption": "The rule: one stroke, redrawn per surface."
+        },
+        {
+          "type": "heading",
+          "text": "A line that keeps its nerve"
+        },
+        {
+          "type": "copy",
+          "text": "The owners had already tried three identities that photographed beautifully and aged badly. The brief was less romantic: be legible at three metres, in low light, next to a busy table, and still be recognisable when printed on a paper bag that would be soaked within the hour."
+        },
+        {
+          "type": "copy",
+          "text": "We answered with a drawn rule — a single hairline that stretches, contracts and doubles according to the surface it sits on. On the menu it is a divider. On the awning it is a horizon. On the door it becomes the handle."
+        },
+        {
+          "type": "media",
+          "src": "assets/media/sable-and-salt-02.svg",
+          "ratio": "tall",
+          "alt": "Sable & Salt menu system in close detail",
+          "caption": "Menu system, uncoated stock, single ink."
+        },
+        {
+          "type": "quote",
+          "text": "The first time a customer drew the line in the air to show a colleague where the table was, we knew the mark was working.",
+          "cite": "Nadia Rahimi — founder"
+        },
+        {
+          "type": "media",
+          "src": "assets/media/sable-and-salt-03.svg",
+          "ratio": "square",
+          "alt": "Sable & Salt signage at dusk",
+          "caption": "Signage study, dusk, west elevation."
+        }
+      ]
+    },
+    {
+      "id": "northern-light",
+      "title": "Northern Light Reclamation",
+      "kicker": "Cultural institution",
+      "client": "Nordic Light Foundation",
+      "year": "2024",
+      "role": "Identity, Digital, Exhibition",
+      "disciplines": "Naming, Identity system, Wayfinding, Website",
+      "summary": "A foundation that funds the restoration of northern industrial sites needed a name, a mark and a building-sized wayfinding language that could hold its own against the landscapes it sits in.",
+      "span": 6,
+      "art": "assets/media/northern-light-01.svg",
+      "body": [
+        {
+          "type": "media",
+          "src": "assets/media/northern-light-01.svg",
+          "ratio": "square",
+          "alt": "Northern Light Reclamation identity on a cold ground",
+          "caption": "The mark: a horizon that is also a section drawing."
+        },
+        {
+          "type": "heading",
+          "text": "Building a mark that behaves like daylight"
+        },
+        {
+          "type": "copy",
+          "text": "Every previous identity we saw for institutions like this one tried to be monumental. Ours is the opposite: the mark is a horizon line that changes with the hour, drawn from the measured angle of light at the four sites the foundation restores."
+        },
+        {
+          "type": "copy",
+          "text": "On paper it is a rule. On screen it is a gradient that runs from the site's winter light to its midsummer light. On the building it is cut into the steel, and it is only ever as wide as the room it names."
+        },
+        {
+          "type": "media",
+          "src": "assets/media/northern-light-02.svg",
+          "ratio": "wide",
+          "alt": "Wayfinding panels for the Northern Light Foundation",
+          "caption": "Wayfinding: the line becomes a threshold."
+        },
+        {
+          "type": "quote",
+          "text": "They handed us a brand that changes with the season. That is not a metaphor here — the sites are 900 kilometres apart and the light is not the same.",
+          "cite": "Ingrid Solheim — programme director"
+        },
+        {
+          "type": "media",
+          "src": "assets/media/northern-light-03.svg",
+          "ratio": "tall",
+          "alt": "Northern Light website detail",
+          "caption": "Site: light data drives the identity."
+        }
+      ]
+    },
+    {
+      "id": "kite",
+      "title": "Kite",
+      "kicker": "Consumer product",
+      "client": "Kite Objects",
+      "year": "2024",
+      "role": "Identity, Packaging",
+      "disciplines": "Identity, Packaging, Illustration",
+      "summary": "A small studio making household objects out of agricultural waste asked for a name that could carry a product line without sounding like a product line.",
+      "span": 8,
+      "art": "assets/media/kite-01.svg",
+      "body": [
+        {
+          "type": "media",
+          "src": "assets/media/kite-01.svg",
+          "ratio": "tall",
+          "alt": "Kite packaging system in green and clay",
+          "caption": "One box, six products."
+        },
+        {
+          "type": "heading",
+          "text": "A name that floats"
+        },
+        {
+          "type": "copy",
+          "text": "The studio was making trays, bowls and brushes from flax and potato waste. The name had to be short, warm and slightly impossible to picture — a shape you can hold in the mind without seeing it."
+        },
+        {
+          "type": "copy",
+          "text": "The identity is deliberately quiet: a single word set large, a rule that indicates the material content of the box, and a colour that is mixed from the waste stream of that production run."
+        },
+        {
+          "type": "media",
+          "src": "assets/media/kite-02.svg",
+          "ratio": "square",
+          "alt": "Kite product labels",
+          "caption": "Labels print the batch colour, not a swatch."
+        },
+        {
+          "type": "quote",
+          "text": "It is the first identity I have seen that gets out of the way of the object.",
+          "cite": "Leonie Kramer — Kite Objects"
+        },
+        {
+          "type": "media",
+          "src": "assets/media/kite-03.svg",
+          "ratio": "wide",
+          "alt": "Kite range photographed together",
+          "caption": "Spring range, photographed in the studio."
+        }
+      ]
+    },
+    {
+      "id": "the-long-room",
+      "title": "The Long Room",
+      "kicker": "Editorial",
+      "client": "Long Room Press",
+      "year": "2023",
+      "role": "Editorial design, Type",
+      "disciplines": "Book design, Type system, Print production",
+      "summary": "A quarterly of long-form essays printed on a single sheet that folds once. We designed a grid that works at four sizes and a masthead that stays out of the way of the text.",
+      "span": 4,
+      "art": "assets/media/the-long-room-01.svg",
+      "body": [
+        {
+          "type": "media",
+          "src": "assets/media/the-long-room-01.svg",
+          "ratio": "square",
+          "alt": "The Long Room cover in clay and black",
+          "caption": "Issue 14, folded sheet."
+        },
+        {
+          "type": "heading",
+          "text": "One fold, four sizes"
+        },
+        {
+          "type": "copy",
+          "text": "The press publishes essays that run to forty pages. The sheet is folded once, so every spread has to be designed in the knowledge that it will be read flat, folded, and read again in a different configuration."
+        },
+        {
+          "type": "copy",
+          "text": "We drew a single grid in two columns and let the type do the rest. The masthead is set in the same face as the body, one size up, tracked out until it becomes a line rather than a word."
+        },
+        {
+          "type": "media",
+          "src": "assets/media/the-long-room-02.svg",
+          "ratio": "tall",
+          "alt": "The Long Room interior spreads",
+          "caption": "Interior: the fold is part of the grid."
+        },
+        {
+          "type": "quote",
+          "text": "Readers write in to tell us which essay they read first and which they read second. We have stopped trying to predict it.",
+          "cite": "Emil Rask — editor"
+        },
+        {
+          "type": "media",
+          "src": "assets/media/the-long-room-03.svg",
+          "ratio": "wide",
+          "alt": "The Long Room print run",
+          "caption": "Print run, four hundred sheets."
+        }
+      ]
+    },
+    {
+      "id": "field-notes",
+      "title": "Field Notes on Concrete",
+      "kicker": "Research publication",
+      "client": "Bureau of Structures",
+      "year": "2023",
+      "role": "Identity, Publication",
+      "disciplines": "Identity, Publication, Data visualisation",
+      "summary": "A research body publishing field notes on concrete published eleven volumes in four years. We gave them an identity that behaves like a filing system, not a magazine.",
+      "span": 12,
+      "art": "assets/media/field-notes-01.svg",
+      "body": [
+        {
+          "type": "media",
+          "src": "assets/media/field-notes-01.svg",
+          "ratio": "wide",
+          "alt": "Field Notes on Concrete volumes lined up",
+          "caption": "Eleven volumes, one spine rule."
+        },
+        {
+          "type": "heading",
+          "text": "A filing system that happens to be a magazine"
+        },
+        {
+          "type": "copy",
+          "text": "The Bureau measures concrete for a living: slump, strength, curing, carbon. Their notes were precise, plain and completely un-designed. The brief was to keep the precision and lose the inattention."
+        },
+        {
+          "type": "copy",
+          "text": "Each volume carries the same structural frame, and the only thing that changes from cover to cover is a single measured value printed at a size proportional to its magnitude. Volume seven is lighter than volume three because its aggregate was."
+        },
+        {
+          "type": "media",
+          "src": "assets/media/field-notes-02.svg",
+          "ratio": "square",
+          "alt": "Field Notes data plates",
+          "caption": "Data plates: one value, one scale."
+        },
+        {
+          "type": "quote",
+          "text": "For the first time the shelf looks like the archive actually is — a set of measurements, not a set of opinions.",
+          "cite": "Dr. Yusuf Adeyemi — Bureau of Structures"
+        },
+        {
+          "type": "media",
+          "src": "assets/media/field-notes-03.svg",
+          "ratio": "tall",
+          "alt": "Field Notes index and specimen pages",
+          "caption": "Specimen pages, uncoated, single colour."
+        }
+      ]
+    },
+    {
+      "id": "meltwater",
+      "title": "Meltwater",
+      "kicker": "Music label",
+      "client": "Meltwater Records",
+      "year": "2022",
+      "role": "Identity, Digital",
+      "disciplines": "Identity, Art direction, Web",
+      "summary": "A label releasing ambient records asked for an identity that could sit behind a sleeve, a stage backdrop and a streaming player without ever becoming the picture.",
+      "span": 6,
+      "art": "assets/media/meltwater-01.svg",
+      "body": [
+        {
+          "type": "media",
+          "src": "assets/media/meltwater-01.svg",
+          "ratio": "square",
+          "alt": "Meltwater label mark in dusk violet",
+          "caption": "The mark: a gradient that never repeats."
+        },
+        {
+          "type": "heading",
+          "text": "A mark that recedes"
+        },
+        {
+          "type": "copy",
+          "text": "The label's whole proposition is that the music is the event and the sleeve is the receipt. So the identity is deliberately quiet: one gradient, one rule, and a catalogue number that is treated as the real logo."
+        },
+        {
+          "type": "copy",
+          "text": "Each release inherits a gradient generated from the recording's own waveform envelope, so no two sleeves in the catalogue are alike and none of them compete with the music."
+        },
+        {
+          "type": "media",
+          "src": "assets/media/meltwater-02.svg",
+          "ratio": "tall",
+          "alt": "Meltwater sleeve series",
+          "caption": "Sleeve series, catalogue MW-014 to MW-021."
+        },
+        {
+          "type": "quote",
+          "text": "We stopped designing covers and started printing data. The fans noticed the numbers before they noticed the colours.",
+          "cite": "Saskia Veld — label manager"
+        },
+        {
+          "type": "media",
+          "src": "assets/media/meltwater-03.svg",
+          "ratio": "wide",
+          "alt": "Meltwater stage backdrop",
+          "caption": "Stage backdrop, 12 × 4 metres."
+        }
+      ]
+    },
+    {
+      "id": "halcyon",
+      "title": "Halcyon Type Foundry",
+      "kicker": "Type foundry",
+      "client": "Halcyon",
+      "year": "2022",
+      "role": "Identity, Type design",
+      "disciplines": "Identity, Type design, Website",
+      "summary": "A foundry releasing its first family needed a name, an identity and a specimen that could be read as a specimen — not as an advertisement for a specimen.",
+      "span": 6,
+      "art": "assets/media/halcyon-01.svg",
+      "body": [
+        {
+          "type": "media",
+          "src": "assets/media/halcyon-01.svg",
+          "ratio": "tall",
+          "alt": "Halcyon type specimen in rust and cream",
+          "caption": "Specimen cover, rust ink on cream."
+        },
+        {
+          "type": "heading",
+          "text": "A foundry that behaves like a library"
+        },
+        {
+          "type": "copy",
+          "text": "Halcyon's argument is that a type foundry should be a shelf, not a showroom. The identity borrows from library cataloguing: a classification number, a spine, and a typographic hierarchy strict enough to file anything."
+        },
+        {
+          "type": "copy",
+          "text": "The first family — a high-contrast serif for long reading — ships with a variable weight axis and an optical size axis, and every specimen is generated from the live font so nothing is ever a picture of the type."
+        },
+        {
+          "type": "media",
+          "src": "assets/media/halcyon-02.svg",
+          "ratio": "square",
+          "alt": "Halcyon specimen interior",
+          "caption": "Specimen interior: the family, at nine sizes."
+        },
+        {
+          "type": "quote",
+          "text": "They gave us an identity that is basically a good index. We are unreasonably pleased about it.",
+          "cite": "Mikkel Søndergaard — Halcyon"
+        },
+        {
+          "type": "media",
+          "src": "assets/media/halcyon-03.svg",
+          "ratio": "wide",
+          "alt": "Halcyon specimen wall",
+          "caption": "Specimen wall, Rotterdam."
+        }
+      ]
+    },
+    {
+      "id": "ordinary-objects",
+      "title": "Ordinary Objects, Carefully",
+      "kicker": "Exhibition",
+      "client": "Kunsthalle Nord",
+      "year": "2021",
+      "role": "Exhibition identity, Print",
+      "disciplines": "Identity, Exhibition graphics, Publication",
+      "summary": "An exhibition of everyday domestic objects needed a title that did not flatter them. The identity had to survive being printed on a wall, a card and a receipt.",
+      "span": 8,
+      "art": "assets/media/ordinary-objects-01.svg",
+      "body": [
+        {
+          "type": "media",
+          "src": "assets/media/ordinary-objects-01.svg",
+          "ratio": "wide",
+          "alt": "Ordinary Objects, Carefully exhibition graphics",
+          "caption": "Wall graphics: a list, set as a list."
+        },
+        {
+          "type": "heading",
+          "text": "A catalogue that behaves like a catalogue"
+        },
+        {
+          "type": "copy",
+          "text": "Two hundred and eleven objects: a chipped cup, a doormat, a bus ticket. The exhibition wanted no glamour and no irony, which is a much harder thing to design than either."
+        },
+        {
+          "type": "copy",
+          "text": "We used a single column, a single size, and the object list itself as the graphic device. The title sets the tone: everything, including the typography, is treated with the same care as the objects."
+        },
+        {
+          "type": "media",
+          "src": "assets/media/ordinary-objects-02.svg",
+          "ratio": "tall",
+          "alt": "Ordinary Objects catalogue detail",
+          "caption": "Catalogue: 320 pages, no images."
+        },
+        {
+          "type": "quote",
+          "text": "Visitors kept asking whether the wall text was part of the exhibition. It was, and that was the point.",
+          "cite": "Ruben Falk — curator"
+        },
+        {
+          "type": "media",
+          "src": "assets/media/ordinary-objects-03.svg",
+          "ratio": "square",
+          "alt": "Ordinary Objects receipt card",
+          "caption": "Receipt cards, printed on the spot."
+        }
+      ]
+    },
+    {
+      "id": "vesper",
+      "title": "Vesper",
+      "kicker": "Architecture practice",
+      "client": "Vesper Architects",
+      "year": "2019",
+      "role": "Identity, Website",
+      "disciplines": "Identity, Website, Signage",
+      "summary": "A three-person architecture practice that wanted to be judged on its drawings rather than its photographs, and asked for an identity with no imagery at all.",
+      "span": 4,
+      "art": "assets/media/vesper-01.svg",
+      "body": [
+        {
+          "type": "media",
+          "src": "assets/media/vesper-01.svg",
+          "ratio": "wide",
+          "alt": "Vesper identity drawn in sand and black",
+          "caption": "Identity: a drawn section, nothing else."
+        },
+        {
+          "type": "heading",
+          "text": "No photographs"
+        },
+        {
+          "type": "copy",
+          "text": "Vesper's work is drawings. Their competitors' work is photographs. The brief was to build a site with no images at all — only plans, sections, and the occasional sentence."
+        },
+        {
+          "type": "copy",
+          "text": "The identity is a single drawn line that marks the cut of every section it accompanies, and the website scrolls like a roll of drawings, one sheet at a time."
+        },
+        {
+          "type": "media",
+          "src": "assets/media/vesper-02.svg",
+          "ratio": "tall",
+          "alt": "Vesper site, section sheets",
+          "caption": "The site scrolls as a roll of drawings."
+        },
+        {
+          "type": "quote",
+          "text": "They made us look like the practice we actually are, which is slower and better.",
+          "cite": "Ana Petrova — Vesper"
+        },
+        {
+          "type": "media",
+          "src": "assets/media/vesper-03.svg",
+          "ratio": "square",
+          "alt": "Vesper drawing set",
+          "caption": "Drawing set, issued quarterly."
+        }
+      ]
+    }
+  ]
+}
