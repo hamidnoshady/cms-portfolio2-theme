@@ -11,7 +11,7 @@
 # **runtime** variable: nothing here bakes a tenant, a key or an origin into the image.
 #
 # QA fixture media (`public/qa/`) is deliberately excluded: `prepare:standalone` filters
-# it unless `ARCH2_INCLUDE_QA=1`, and this image never sets that.
+# it unless `P2_INCLUDE_QA=1`, and this image never sets that.
 
 # --- dependencies (cached until the lockfile or the vendored runtime moves) -----------
 FROM node:24-bookworm-slim AS deps

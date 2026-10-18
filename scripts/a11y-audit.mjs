@@ -10,10 +10,10 @@ import puppeteer from 'puppeteer-core'
 const require = createRequire(import.meta.url)
 const chromiumLibs = () => {
   const packaged = join(require.resolve('@sparticuz/chromium'), '..', '..', 'bin', 'al2023.tar.br')
-  const dir = join(tmpdir(), 'arch2-chromium-libs')
+  const dir = join(tmpdir(), 'p2-chromium-libs')
   if (existsSync(join(dir, 'lib')) || !existsSync(packaged)) return dir
   mkdirSync(dir, { recursive: true })
-  const tarPath = join(tmpdir(), 'arch2-al2023.tar')
+  const tarPath = join(tmpdir(), 'p2-al2023.tar')
   writeFileSync(tarPath, brotliDecompressSync(readFileSync(packaged)))
   execFileSync('tar', ['-xf', tarPath, '-C', dir])
   return dir
@@ -47,7 +47,7 @@ const BASE = argOf('--base', process.env.AUDIT_BASE ?? 'http://127.0.0.1:3200')
 const OUT = argOf('--out', 'docs/screenshots')
 const PATHS = (
   argOf('--paths', process.env.AUDIT_PATHS) ??
-  '/,/projects,/projects/khaneye-noor,/objects,/objects/raw-lamp,/about,/contact,/careers,/legal,/en,/en/projects,/en/objects,/en/about,/en/contact,/en/careers,/en/legal,/does-not-exist'
+  '/,/projects,/projects/khaneye-noor,/projects/ofogh-office,/about,/contact,/en,/en/projects,/en/projects/ofogh-office,/en/about,/en/contact,/does-not-exist'
 ).split(',')
 
 const audit = async (page) => page.evaluate(() => {
@@ -151,7 +151,7 @@ const assertAssetsServed = async (page, base) => {
   // Cache-buster: a cached stylesheet revalidates with 304, which proves the browser
   // cache, not the server. The asset itself has to come back 200 + text/css.
   const probe = new URL(href, base)
-  probe.searchParams.set('arch2-audit', Date.now().toString(36))
+  probe.searchParams.set('p2-audit', Date.now().toString(36))
   const response = await page.goto(probe.toString(), { waitUntil: 'domcontentloaded' })
   const type = response?.headers()['content-type'] ?? ''
   if (response?.status() !== 200 || !type.includes('text/css')) {

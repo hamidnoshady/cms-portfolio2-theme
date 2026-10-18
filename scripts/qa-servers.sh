@@ -16,8 +16,9 @@
 # to start, and the leftover processes hold *only* these ports. It never touches anything
 # outside the list it owns.
 #
-# Then, in another shell:
-#   node scripts/screenshots.mjs --base http://127.0.0.1:3200 --scale 2
+# Then, in another shell, run the audits against the primary pair:
+#   node scripts/a11y-audit.mjs --base http://127.0.0.1:3200 --out docs/screenshots
+#   node scripts/interaction-audit.mjs --base http://127.0.0.1:3200 --slow-base http://127.0.0.1:3300 --out docs/screenshots
 #
 # Ports: 3300 slow CMS · 3400 suspended · 3500 empty · 3600 unreachable ·
 #        3700 no logo · 3800 long labels.
