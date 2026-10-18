@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dcd9ea" />
+      <stop offset="1" stop-color="#a79fcb" stop-opacity="0.8" />
+    </linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+  </defs>
+  <g><rect width="1000" height="1250" fill="url(#g)" /><g transform="translate(97 53) scale(0.73)"><g stroke="#a79fcb" stroke-opacity="0.59" stroke-width="3"><line x1="1565" y1="77" x2="1565" y2="378" /><line x1="1593" y1="77" x2="1593" y2="378" /><line x1="1621" y1="77" x2="1621" y2="378" /><line x1="1649" y1="77" x2="1649" y2="378" /><line x1="1677" y1="77" x2="1677" y2="378" /><line x1="1705" y1="77" x2="1705" y2="378" /></g><circle cx="217" cy="734" r="249" fill="#161326" fill-opacity="0.52" /><rect x="1203" y="314" width="193" height="20" fill="#a79fcb" fill-opacity="0.87" /><circle cx="1214" cy="192" r="167" fill="#5a4f86" fill-opacity="0.74" /></g></g>
+  <line x1="0" y1="125" x2="1000" y2="125" stroke="#161326" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="250" x2="1000" y2="250" stroke="#161326" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="375" x2="1000" y2="375" stroke="#161326" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="500" x2="1000" y2="500" stroke="#161326" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="625" x2="1000" y2="625" stroke="#161326" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="750" x2="1000" y2="750" stroke="#161326" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="875" x2="1000" y2="875" stroke="#161326" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="1000" x2="1000" y2="1000" stroke="#161326" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="1125" x2="1000" y2="1125" stroke="#161326" stroke-opacity="0.08" stroke-width="1" />
+  <rect width="1000" height="1250" filter="url(#grain)" opacity="0.055" />
+  <text x="952" y="1206" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="34" letter-spacing="6" fill="#161326" fill-opacity="0.4">18</text>
+</svg>

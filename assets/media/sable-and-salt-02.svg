@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8e2d6" />
+      <stop offset="1" stop-color="#c9b79c" stop-opacity="0.8" />
+    </linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+  </defs>
+  <g><rect width="1000" height="1250" fill="url(#g)" /><g transform="translate(56 157) scale(1.19)"><circle cx="1194" cy="483" r="154" fill="#241d16" fill-opacity="0.59" /><rect x="1519" y="463" width="526" height="18" fill="#241d16" fill-opacity="0.59" /><circle cx="1529" cy="439" r="245" fill="none" stroke="#c9b79c" stroke-opacity="0.53" stroke-width="28" /></g></g>
+  <line x1="0" y1="125" x2="1000" y2="125" stroke="#241d16" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="250" x2="1000" y2="250" stroke="#241d16" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="375" x2="1000" y2="375" stroke="#241d16" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="500" x2="1000" y2="500" stroke="#241d16" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="625" x2="1000" y2="625" stroke="#241d16" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="750" x2="1000" y2="750" stroke="#241d16" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="875" x2="1000" y2="875" stroke="#241d16" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="1000" x2="1000" y2="1000" stroke="#241d16" stroke-opacity="0.08" stroke-width="1" /><line x1="0" y1="1125" x2="1000" y2="1125" stroke="#241d16" stroke-opacity="0.08" stroke-width="1" />
+  <rect width="1000" height="1250" filter="url(#grain)" opacity="0.055" />
+  <text x="952" y="1206" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="34" letter-spacing="6" fill="#241d16" fill-opacity="0.4">02</text>
+</svg>
