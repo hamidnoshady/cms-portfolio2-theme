@@ -1,7 +1,14 @@
-import { AboutView, aboutMetadata } from '@/views/AboutView'
+import { ExperienceRoot } from "@/components/experience/experience-root";
+import { getExperienceData } from "@/lib/experience-data";
+import type { Metadata } from "next";
 
-export const generateMetadata = () => aboutMetadata('fa')
+export const dynamic = "force-dynamic";
 
-export default function Page() {
-  return <AboutView locale="fa" />
+export const metadata: Metadata = {
+  title: "About",
+};
+
+export default async function AboutPage() {
+  const data = await getExperienceData();
+  return <ExperienceRoot data={data} initialView={{ name: "about" }} />;
 }

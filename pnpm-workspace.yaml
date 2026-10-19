@@ -1,0 +1,6 @@
+# pnpm 11 settings live here. Native postinstall builds are approved explicitly:
+# unrs-resolver (eslint-config-next), esbuild (tsx, drizzle-kit), sharp (next/image).
+allowBuilds:
+  unrs-resolver: true
+  esbuild: true
+  sharp: true

@@ -1,291 +1,68 @@
 {
-  "name": "Mosaic Portfolio",
-  "nameFa": "موزاییک — پوستهٔ نمونه‌کار",
-  "key": "portfolio2-mosaic",
   "contractVersion": 1,
-  "siteTypes": [
-    "portfolio"
-  ],
-  "locales": [
-    "fa",
-    "en"
-  ],
+  "key": "meridian",
+  "name": "Meridian",
+  "nameFa": "مریدین",
+  "siteTypes": ["portfolio"],
+  "locales": ["en"],
   "proxiesApi": true,
   "capabilities": {
-    "aboutPage": true,
-    "caseStudyReveal": true,
-    "contactForm": true,
-    "preview": true,
-    "projects": true,
-    "revalidation": true
+    "forms": true
   },
   "design": {
-    "accent": "#000000",
-    "background": "#ffffff",
-    "foreground": "#000000",
-    "lineHeight": 1.6,
-    "primary": "#000000",
+    "primary": "#141414",
+    "accent": "#946ec4",
+    "background": "#f5f5f2",
+    "foreground": "#141414",
     "radius": "none"
   },
   "build": {
-    "baseDirectory": "/",
-    "buildCommand": "npm run build",
     "buildPack": "dockerfile",
+    "baseDirectory": "/",
     "dockerfileLocation": "Dockerfile",
-    "healthCheckPath": "/api/health",
-    "installCommand": "npm ci",
-    "isStatic": false,
+    "installCommand": null,
+    "buildCommand": null,
+    "startCommand": null,
+    "publishDirectory": null,
     "port": 3000,
-    "startCommand": "npm run start:standalone"
+    "healthCheckPath": "/api/health",
+    "isStatic": false
   },
-  "deployment": {
-    "strategy": "registry_image",
-    "registryProvider": "ghcr",
-    "registryImageRepository": "ghcr.io/hamidnoshady/cms-portfolio2-theme",
-    "registryVisibility": "public"
-  },
-  "env": [
-    {
-      "key": "ESHOBE_CMS_URL",
-      "labelFa": "نشانی سامانهٔ محتوا",
-      "help": "مقدار را سکو می‌نویسد؛ پوسته فقط اعلام می‌کند که آن را می‌خواند.",
-      "required": true,
-      "secret": false,
-      "source": "platform"
-    },
-    {
-      "key": "ESHOBE_SITE_DOMAIN",
-      "labelFa": "دامنهٔ سایت",
-      "help": "برای ساخت نشانی‌های canonical و نقشهٔ سایت.",
-      "required": false,
-      "secret": false,
-      "source": "platform"
-    },
-    {
-      "key": "ESHOBE_PUBLIC_ORIGIN",
-      "labelFa": "نشانی عمومی این استقرار",
-      "help": "در حالت پیش‌نمایش با دامنهٔ اصلی تفاوت دارد.",
-      "required": false,
-      "secret": false,
-      "source": "platform"
-    },
-    {
-      "key": "ESHOBE_SITE_ID",
-      "labelFa": "شناسهٔ سایت",
-      "required": false,
-      "secret": false,
-      "source": "platform"
-    },
-    {
-      "key": "ESHOBE_API_KEY",
-      "labelFa": "کلید دسترسی سایت",
-      "help": "فقط روی سرور خوانده می‌شود و هرگز به بستهٔ مرورگر راه نمی‌یابد.",
-      "required": false,
-      "secret": true,
-      "source": "platform"
-    },
-    {
-      "key": "ESHOBE_DEFAULT_LOCALE",
-      "labelFa": "زبان پیش‌فرض",
-      "required": false,
-      "secret": false,
-      "source": "platform"
-    },
-    {
-      "key": "ESHOBE_LOCALES",
-      "labelFa": "زبان‌های سروشده",
-      "required": false,
-      "secret": false,
-      "source": "platform"
-    },
-    {
-      "key": "ESHOBE_REVALIDATE_SECRET",
-      "labelFa": "کلید بازاعتبارسنجی",
-      "help": "برای بررسی HMAC روی بدنهٔ خام درخواست.",
-      "required": false,
-      "secret": true,
-      "source": "platform"
-    },
-    {
-      "key": "ESHOBE_PREVIEW_SECRET",
-      "labelFa": "کلید پیش‌نمایش",
-      "help": "تا وقتی خالی باشد، پیش‌نمایش غیرفعال است.",
-      "required": false,
-      "secret": true,
-      "source": "platform"
-    },
-    {
-      "key": "ESHOBE_ALLOW_HOST_TENANT",
-      "labelFa": "تشخیص مستأجر از Host",
-      "help": "روشن یا خاموش؛ به‌صورت پیش‌فرض هنگام وجود کلید سایت غیرفعال است.",
-      "required": false,
-      "secret": false,
-      "source": "platform"
-    }
-  ],
+  "env": [],
   "settings": {
-    "homeTiles": {
-      "type": "number",
-      "default": 6,
-      "min": 2,
-      "max": 24,
-      "labelFa": "تعداد آثار در بوم صفحهٔ خانه",
-      "labelEn": "Works on the home mosaic",
-      "help": "فقط صفحهٔ اول را کوتاه می‌کند؛ آرشیو با همین چیدمان صفحه‌بندی می‌شود."
-    },
-    "mosaicPlan": {
-      "type": "select",
-      "default": "editorial",
-      "labelFa": "المان چیدمان بوم",
-      "labelEn": "Mosaic composition",
-      "help": "هر المان، ردیف‌های دوازده‌ستونی را کامل می‌بندد؛ پس هیچ سطرِ نیمه‌کاره‌ای باقی نمی‌ماند.",
-      "options": [
-        {
-          "value": "editorial",
-          "labelFa": "ویراستاری (پهن + باریک، زوج، تمام‌عرض)",
-          "labelEn": "Editorial (wide + narrow, pairs, full-bleed)"
-        },
-        {
-          "value": "duo",
-          "labelFa": "سرآمد و سپس دوتایی",
-          "labelEn": "Lead, then two-up"
-        },
-        {
-          "value": "uniform",
-          "labelFa": "یکسان دوتایی",
-          "labelEn": "Uniform two-up"
-        }
-      ]
-    },
-    "archiveTiles": {
-      "type": "number",
-      "default": 18,
-      "min": 6,
-      "max": 48,
-      "labelFa": "تعداد آثار در هر صفحهٔ آرشیو",
-      "labelEn": "Works per archive page"
-    },
-    "caseStudyReveal": {
-      "type": "boolean",
-      "default": true,
-      "labelFa": "نمایش هماهنگ ورود اثر (عنوان از بالا، محتوا از پایین)",
-      "labelEn": "Coordinated case-study entrance",
-      "help": "با احترام به prefers-reduced-motion؛ در حالت کاهش حرکت، همان حالت نهایی بی‌درنگ نمایش داده می‌شود."
-    },
-    "caseStudyMarquee": {
-      "type": "boolean",
-      "default": true,
-      "labelFa": "غلتش عنوان‌های بلند",
-      "labelEn": "Long-title drift",
-      "help": "فقط وقتی اعمال می‌شود که عنوان از عرض ستون بیرون بزند؛ عنوان کوتاه هرگز حرکت نمی‌کند."
-    },
-    "caseStudyMarqueeSpeed": {
-      "type": "number",
-      "default": 44,
-      "min": 8,
-      "max": 120,
-      "labelFa": "سرعت غلتش (پیکسل بر ثانیه)",
-      "labelEn": "Drift speed (pixels per second)"
-    },
-    "mapProvider": {
-      "type": "select",
-      "default": "osm",
-      "labelFa": "سرویس نقشه",
-      "labelEn": "Map provider",
-      "help": "OpenStreetMap رایگان است و کلید نمی‌خواهد. Google و Mapbox به کلید عمومیِ محدودشده به دامنهٔ سایت نیاز دارند؛ بدون کلید، OpenStreetMap نمایش داده می‌شود.",
-      "options": [
-        {
-          "value": "osm",
-          "labelFa": "OpenStreetMap (رایگان)",
-          "labelEn": "OpenStreetMap (free)"
-        },
-        {
-          "value": "google",
-          "labelFa": "Google Maps (کلید)",
-          "labelEn": "Google Maps (key)"
-        },
-        {
-          "value": "mapbox",
-          "labelFa": "Mapbox (کلید)",
-          "labelEn": "Mapbox (key)"
-        },
-        {
-          "value": "off",
-          "labelFa": "بدون نقشه",
-          "labelEn": "No map"
-        }
-      ]
-    },
-    "mapApiKey": {
-      "type": "text",
-      "default": "",
-      "labelFa": "کلید نقشه",
-      "labelEn": "Map key",
-      "help": "فقط کلید عمومی (Google Maps Embed یا Mapbox pk.). این مقدار در صفحه دیده می‌شود؛ آن را در سرویس نقشه به دامنهٔ سایت محدود کنید."
-    },
-    "mapCenter": {
-      "type": "text",
-      "default": "",
-      "labelFa": "مختصات دفتر",
-      "labelEn": "Studio coordinates",
-      "help": "به‌صورت «عرض، طول»، مثلاً 35.6892, 51.3890. اگر خالی باشد، مختصات از پیوند نقشهٔ بلوک تماس خوانده می‌شود."
-    },
-    "mapZoom": {
-      "type": "number",
-      "default": 16,
-      "min": 3,
-      "max": 19,
-      "labelFa": "بزرگنمایی نقشه",
-      "labelEn": "Map zoom"
-    }
+    "wordmark": { "type": "text", "labelEn": "Wordmark", "labelFa": "نشان متنی", "help": "Short brand mark in the header. Falls back to the site name." },
+    "tagline": { "type": "text", "labelEn": "Tagline", "labelFa": "شعار" },
+    "disciplineLine": { "type": "text", "labelEn": "Discipline line", "labelFa": "خط تخصص‌ها" },
+    "homeKicker": { "type": "text", "labelEn": "Home kicker", "labelFa": "عنوان کوچک صفحهٔ اصلی" },
+    "aboutKicker": { "type": "text", "default": "The practice", "labelEn": "About kicker", "labelFa": "عنوان کوچک درباره ما" },
+    "navProjectsLabel": { "type": "text", "default": "Projects", "labelEn": "Menu: Projects", "labelFa": "منو: پروژه‌ها" },
+    "navAboutLabel": { "type": "text", "default": "About", "labelEn": "Menu: About", "labelFa": "منو: درباره ما" },
+    "navObjectsLabel": { "type": "text", "default": "Objects", "labelEn": "Menu: Objects", "labelFa": "منو: اشیا" },
+    "navContactLabel": { "type": "text", "default": "Contact", "labelEn": "Menu: Contact", "labelFa": "منو: تماس" },
+    "navCareersLabel": { "type": "text", "default": "Careers", "labelEn": "Menu: Careers", "labelFa": "منو: فرصت‌های شغلی" },
+    "ctaLabel": { "type": "text", "default": "See selected work", "labelEn": "Home call to action", "labelFa": "دکمهٔ صفحهٔ اصلی" },
+    "primaryLanguageLabel": { "type": "text", "default": "ENG", "labelEn": "Primary language tag", "labelFa": "برچسب زبان اصلی" },
+    "secondaryLanguageLabel": { "type": "text", "labelEn": "Secondary language tag", "labelFa": "برچسب زبان دوم" },
+    "clockLabel": { "type": "text", "default": "UTC", "labelEn": "Clock 1 label", "labelFa": "برچسب ساعت اول" },
+    "timezone": { "type": "text", "default": "UTC", "labelEn": "Clock 1 timezone", "labelFa": "منطقهٔ زمانی ساعت اول", "help": "IANA name, e.g. Europe/Madrid." },
+    "secondaryClockLabel": { "type": "text", "default": "UTC", "labelEn": "Clock 2 label", "labelFa": "برچسب ساعت دوم" },
+    "secondaryTimezone": { "type": "text", "default": "UTC", "labelEn": "Clock 2 timezone", "labelFa": "منطقهٔ زمانی ساعت دوم", "help": "IANA name, e.g. America/Argentina/Buenos_Aires." },
+    "city": { "type": "text", "labelEn": "City", "labelFa": "شهر" },
+    "country": { "type": "text", "labelEn": "Country code", "labelFa": "کد کشور" },
+    "foundedYear": { "type": "number", "min": 1800, "max": 2100, "labelEn": "Founded year", "labelFa": "سال تأسیس" },
+    "instagramUrl": { "type": "text", "labelEn": "Instagram URL", "labelFa": "نشانی اینستاگرام" },
+    "linkedinUrl": { "type": "text", "labelEn": "LinkedIn URL", "labelFa": "نشانی لینکدین" },
+    "careersEmail": { "type": "text", "labelEn": "Careers email", "labelFa": "ایمیل فرصت‌های شغلی" },
+    "footerNote": { "type": "text", "labelEn": "Footer note", "labelFa": "یادداشت پاورقی" },
+    "projectsCategorySlug": { "type": "text", "default": "projects", "labelEn": "Projects category slug", "labelFa": "اسلاگ دستهٔ پروژه‌ها", "help": "Posts in this category form /projects." },
+    "objectsCategorySlug": { "type": "text", "default": "objects", "labelEn": "Objects category slug", "labelFa": "اسلاگ دستهٔ اشیا", "help": "Posts in this category form /objects." }
   },
   "contentSlots": [
-    {
-      "key": "home",
-      "type": "page",
-      "required": false,
-      "labelFa": "سند صفحهٔ خانه",
-      "labelEn": "Home page document",
-      "help": "نشانی خانه / می‌ماند و بوم، نما را از دستهٔ نمونه‌کارها می‌سازد؛ این اتصال فقط پیوندهای ناوبری به سند خانه را روی / تمام می‌کند."
-    },
-    {
-      "key": "about",
-      "type": "page",
-      "required": false,
-      "labelFa": "صفحهٔ درباره ما",
-      "labelEn": "About page",
-      "help": "نشانی /about ثابت است؛ این اتصال تعیین می‌کند کدام سند نمایش داده شود."
-    },
-    {
-      "key": "contact",
-      "type": "page",
-      "required": false,
-      "labelFa": "صفحهٔ تماس",
-      "labelEn": "Contact page"
-    },
-    {
-      "key": "projectsCategory",
-      "type": "category",
-      "required": false,
-      "labelFa": "دستهٔ ریشهٔ نمونه‌کارها",
-      "labelEn": "Work root category",
-      "help": "موزاییک و صفحهٔ اثر فقط اسناد این دسته (و زیردسته‌هایش) را نشان می‌دهند."
-    },
-    {
-      "key": "leadWork",
-      "type": "post",
-      "required": false,
-      "labelFa": "اثر سرآمد",
-      "labelEn": "Lead work",
-      "help": "در سطر اول بوم قرار می‌گیرد. اگر انتشار نیابد یا به این زبان ترجمه نشده باشد، بوم از ترتیب آرشیو چیده می‌شود."
-    },
-    {
-      "key": "contactForm",
-      "type": "form",
-      "required": false,
-      "labelFa": "فرم تماس",
-      "labelEn": "Contact form",
-      "help": "فیلدها از خود فرم خوانده می‌شوند؛ پوسته فهرست فیلد نمی‌سازد."
-    }
+    { "key": "home", "type": "page", "required": false, "labelEn": "Home page", "labelFa": "صفحهٔ اصلی", "help": "Hero richText paragraphs = the big statement lines; first content block = intro." },
+    { "key": "about", "type": "page", "required": false, "labelEn": "About page", "labelFa": "صفحهٔ درباره ما", "help": "See docs/CMS-SETUP.md for the block order." },
+    { "key": "careers", "type": "page", "required": false, "labelEn": "Careers page", "labelFa": "صفحهٔ فرصت‌های شغلی" },
+    { "key": "legal", "type": "page", "required": false, "labelEn": "Legal page", "labelFa": "صفحهٔ حقوقی", "help": "Each heading in the content starts a section." },
+    { "key": "contact", "type": "page", "required": false, "labelEn": "Contact page", "labelFa": "صفحهٔ تماس", "help": "Its contact block supplies email, phone and address." },
+    { "key": "contactForm", "type": "form", "required": false, "labelEn": "Contact form", "labelFa": "فرم تماس", "help": "Fields: reason (select), name, email, message." }
   ]
 }

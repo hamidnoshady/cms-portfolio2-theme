@@ -1,7 +1,14 @@
-import { ContactView, contactMetadata } from '@/views/ContactView'
+import { ExperienceRoot } from "@/components/experience/experience-root";
+import { getExperienceData } from "@/lib/experience-data";
+import type { Metadata } from "next";
 
-export const generateMetadata = () => contactMetadata('fa')
+export const dynamic = "force-dynamic";
 
-export default function Page() {
-  return <ContactView locale="fa" />
+export const metadata: Metadata = {
+  title: "Contact",
+};
+
+export default async function ContactPage() {
+  const data = await getExperienceData();
+  return <ExperienceRoot data={data} initialView={{ name: "contact" }} />;
 }

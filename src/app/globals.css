@@ -1,70 +1,312 @@
-/* ============================================================================
-   Single stylesheet entry point. Order matters:
-     1. Tailwind (its preflight is the only reset, and it declares the layer order
-        `theme, base, components, utilities`)
-     2. theme tokens (unlayered custom properties — later tenant `themeCss` wins)
-     3. base document defaults        → @layer base
-     4. semantic typography roles     → @layer components
-     5. the two line systems          → @layer components
-     6. layout primitives             → @layer components
-     7. component styles              → @layer components
-     8. the mosaic and the case study → @layer components
+@import "tailwindcss";
 
-   Files 3–8 declare their own `@layer` deliberately: an unlayered component rule would
-   beat every Tailwind utility, so `md:hidden` (or `md:grid-cols-3`) on a styled element
-   would silently do nothing.
-   Per-site design tokens (primary/accent/background/foreground/radius/line-height)
-   are injected after all of this by the root layouts, from `themeCss(site.theme)`.
-   ========================================================================== */
+/* ============================================================
+   Meridian theme — faithful to the reference site's system:
+   light warm canvas, ink text, difference-blend chrome,
+   tiny confident type, big immersive imagery.
+   ============================================================ */
 
-@import 'tailwindcss';
-@import 'lenis/dist/lenis.css';
-@import '../styles/tokens.css';
-@import '../styles/base.css';
-@import '../styles/typography.css';
-@import '../styles/lines.css';
-@import '../styles/structure.css';
-@import '../styles/components.css';
-@import '../styles/mosaic.css';
-@import '../styles/case-study.css';
+:root {
+  --bg: #f5f5f2;
+  --site-bg: #ffffff;
+  --panel: #e1e1e1;
+  --panel-dark: #d7d7d0;
+  --text: #141414;
+  --muted: rgba(20, 20, 20, 0.3);
+  --faint: rgba(20, 20, 20, 0.2);
+  --border: rgba(20, 20, 20, 0.08);
+  --accent: #946ec4;
+  --danger: #c7161d;
+  --shadow: 0 24px 80px rgba(11, 12, 11, 0.12);
+
+  --site-grid-edge: 32px;
+  --site-grid-gap: 32px;
+
+  --easeIO: cubic-bezier(0.65, 0, 0.35, 1);
+  --easeOut: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --stable-viewport-height: 100vh;
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --site-grid-edge: 20px;
+    --site-grid-gap: 18px;
+  }
+}
+@media (max-width: 760px) {
+  :root {
+    --site-grid-edge: 16px;
+    --site-grid-gap: 15px;
+  }
+}
 
 @theme inline {
-  /* Colour utilities read the tokens, so `text-ink-secondary` and
-     `.type-meta` cannot drift apart. */
-  --color-surface: var(--surface);
-  --color-ink: var(--ink);
-  --color-ink-secondary: var(--ink-secondary);
-  --color-ink-faint: var(--ink-faint);
-  --color-line-structural: var(--line-structural-color);
-  --color-line-decor: var(--line-decor-color);
-  --color-line-emphasis: var(--line-emphasis-color);
-  --color-skeleton: var(--line-skeleton-color);
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-dark: var(--panel-dark);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
 
-  /* Radius is zero at every level — even a stray `rounded-lg` stays square. */
-  --radius-none: 0px;
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
-  --radius-2xl: 0px;
-  --radius-3xl: 0px;
-  --radius-full: 0px;
+/* ============================================================ Base */
 
-  --font-ui: var(--font-ui);
-  --font-brand: var(--font-brand);
-  --font-fa: var(--font-fa);
-  --font-en: var(--font-en);
+html,
+body {
+  height: 100%;
+}
 
-  --text-display: var(--text-display);
-  --text-title: var(--text-title);
-  --text-heading: var(--text-heading);
-  --text-subheading: var(--text-subheading);
-  --text-body: var(--text-body);
-  --text-ui: var(--text-ui);
-  --text-meta: var(--text-meta);
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
 
-  --spacing: 0.25rem;
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
 
-  /* No shadow scale exists in this design system. */
-  --shadow-none: 0 0 #0000;
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+  display: block;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+@media (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+
+  /* Keep native input/text affordances where they matter. */
+  html.has-custom-cursor input,
+  html.has-custom-cursor textarea,
+  html.has-custom-cursor select,
+  html.has-custom-cursor [contenteditable="true"] {
+    cursor: text !important;
+  }
+}
+
+/* ============================================================ Type helpers */
+
+.t-nav {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-feature-settings: "ss01" 1;
+}
+.t-display {
+  font-size: 23.589px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-feature-settings: "ss01" 1;
+}
+.t-card-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.2;
+  font-feature-settings: "ss01", "ss09";
+}
+.t-index-num {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  font-feature-settings: "ss09" 1;
+}
+.t-caption {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.t-body16 {
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+.t-clock {
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  line-height: 17px;
+}
+.t-small {
+  font-size: 10px;
+  letter-spacing: -0.02em;
+  line-height: 17px;
+}
+
+/* ============================================================ Layout */
+
+.edge {
+  padding-inline: var(--site-grid-edge);
+}
+
+.hairline-b {
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================ Motion */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+.fade-up {
+  animation: fadeUp 0.92s var(--easeIO) backwards;
+}
+
+@keyframes panelIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.colon-blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    animation: none;
+  }
+}
+
+/* Rolling clock digits */
+.clock-roll {
+  display: inline-block;
+  height: 17px;
+  min-width: 2ch;
+  overflow: hidden;
+  position: relative;
+  text-align: right;
+  vertical-align: bottom;
+}
+.clock-roll span {
+  position: absolute;
+  inset: 0;
+  text-align: right;
+  animation: fadeUp 0.42s var(--easeIO);
+}
+
+/* Overlay scroll containers */
+.surface-scroll {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Safe area insets for notched devices */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .surface-scroll {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Prevent horizontal overflow from marquee titles and wide content */
+.surface-scroll > * {
+  max-width: 100vw;
+}
+
+/* Scroll-driven slide-in for media in long surfaces (graceful: stays
+   visible where animation-timeline is unsupported) */
+@keyframes mediaSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(64px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .view-slide {
+      animation: mediaSlideIn both;
+      animation-range: entry 0% entry 46%;
+      animation-timeline: view();
+      will-change: opacity, transform;
+    }
+  }
+}
+
+/* Mosaic tile: scroll-driven deformation is applied via JS on .mosaic-tile__img.
+   Hover adds a subtle brightness lift. No CSS scale — JS owns the transform. */
+.mosaic-tile {
+  cursor: none;
+}
+.mosaic-tile__img {
+  will-change: transform;
+  filter: brightness(1);
+  transition: filter .4s ease;
+}
+.mosaic-tile:hover .mosaic-tile__img {
+  filter: brightness(1.04);
+}
+
+/* Media behaviours */
+.media-zoom {
+  overflow: hidden;
+  position: relative;
+}
+.media-zoom img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.86s var(--easeIO);
+}
+button:hover > .media-zoom img,
+a:hover > .media-zoom img,
+.media-zoom:hover img {
+  transform: scale(1.05);
 }
