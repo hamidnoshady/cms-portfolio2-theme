@@ -1,9 +1,15 @@
-# Dependencies and generated browser cache
 node_modules/
-.cache/
-recordings/.capture/
 
-# OS / editor noise
+# Build output of the vendored runtime (`npm run vendor:build` regenerates it).
+vendor/site-runtime/dist/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
 .DS_Store
-Thumbs.db
-*.swp
+.env
+.env.local
+.env*.local
+npm-debug.log*

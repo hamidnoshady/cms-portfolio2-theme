@@ -1,0 +1,155 @@
+/* ============================================================================
+   Mosaic — the index of work.
+
+   A hairline-separated 12-column grid: the 1px `gap` painted on a `--line`
+   background *is* the rule between tiles, so no tile draws a border and no
+   rule is doubled at a shared edge. Spans come from `src/lib/portfolio/
+   mosaicPlan.ts` (see `data-span`), never from CSS nth-child magic — the
+   composition has to stay readable in the markup and testable without a DOM.
+
+   Everything here is direction-agnostic: `inline`/`block` properties only, so
+   the Persian layout is the same sheet, not a second one.
+   ========================================================================== */
+@layer components {
+
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--line-w);
+    background: var(--line-structural-color);
+    border-block-end: var(--line-w) solid var(--line-structural-color);
+    z-index: var(--z-mosaic);
+  }
+
+  /* A tile is a link, not a div with a click handler: it must be openable in a new
+     tab, focusable in reading order, and meaningful with JavaScript absent. The reveal
+     is progressive; the URL is the product. */
+  .mosaic__tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(24px, 4vw, 48px);
+    min-block-size: clamp(240px, 32vw, 420px);
+    padding: clamp(16px, 2vw, 28px);
+    background: var(--surface);
+    color: var(--ink);
+    overflow: hidden;
+    isolation: isolate;
+    text-align: start;
+    transition:
+      background var(--dur-control) var(--ease-out-soft),
+      color var(--dur-control) var(--ease-out-soft);
+  }
+
+  .mosaic__tile[data-span='12'] { grid-column: span 12; }
+  .mosaic__tile[data-span='8'] { grid-column: span 8; }
+  .mosaic__tile[data-span='6'] { grid-column: span 6; }
+  .mosaic__tile[data-span='4'] { grid-column: span 4; }
+
+  /* The artwork is a watermark, not a thumbnail: it sits behind the type at 7% and
+     only comes forward on hover/focus. `isolation` + `z-index: -1` keep it below the
+     text without a stacking context on the tile's own content. */
+  .mosaic__art {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    opacity: 0.07;
+    transform: scale(1.04);
+    transition:
+      opacity var(--dur-control) var(--ease-out-soft),
+      transform 900ms var(--ease-out-expo),
+      filter var(--dur-control) var(--ease-out-soft);
+  }
+
+  .mosaic__art img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .mosaic__top,
+  .mosaic__foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--ink-secondary);
+    transition: color var(--dur-control) var(--ease-out-soft);
+  }
+
+  .mosaic__top {
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  /* Tabular numerals so 01…09 line up in a column even in a proportional face. */
+  .mosaic__index {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mosaic__title {
+    font-size: var(--text-title);
+    line-height: var(--leading-title);
+    letter-spacing: var(--tracking-tight);
+    font-weight: var(--weight-medium);
+    max-inline-size: 18ch;
+    text-wrap: balance;
+  }
+
+  .mosaic__summary {
+    font-size: var(--text-summary);
+    line-height: var(--leading-body);
+    color: var(--ink-secondary);
+    max-inline-size: 52ch;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color var(--dur-control) var(--ease-out-soft);
+  }
+
+  /* Hover inverts the tile. Contrast is checked in both states: the inverted
+     ground is pure black, so the type flips to `--ink-invert` rather than to a
+     translucent white that would fail at small sizes. */
+  .mosaic__tile:is(:hover, :focus-visible) {
+    background: var(--ink);
+    color: var(--ink-invert);
+  }
+
+  .mosaic__tile:is(:hover, :focus-visible) .mosaic__top,
+  .mosaic__tile:is(:hover, :focus-visible) .mosaic__foot,
+  .mosaic__tile:is(:hover, :focus-visible) .mosaic__summary {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .mosaic__tile:is(:hover, :focus-visible) .mosaic__art {
+    opacity: 0.26;
+    filter: invert(1);
+    transform: scale(1);
+  }
+
+  /* The tile that owns the open case study keeps a marker, so the return trip after
+     closing is legible. Never the *only* sign of state. */
+  .mosaic__tile[data-current='true'] .mosaic__index::after {
+    content: ' ·';
+  }
+
+  .mosaic__lead {
+    grid-column: span 12;
+    min-block-size: clamp(280px, 40vw, 520px);
+  }
+
+  @media (max-width: 56.24rem) {
+    /* Below 900px the composition is a single column: a 4-wide tile at 390px is a
+       caption with no room for it. */
+    .mosaic__tile {
+      grid-column: span 12;
+      min-block-size: clamp(200px, 58vw, 320px);
+    }
+  }
+}

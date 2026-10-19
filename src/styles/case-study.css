@@ -1,0 +1,368 @@
+/* ============================================================================
+   Case study — the opened work.
+
+   Rules the reveal depends on (do not "simplify" these away):
+
+   1. `.case__scroller` is the ONLY scroll container of the panel, and it is never
+      transformed: a transform on an ancestor makes `position: sticky` inside it
+      resolve against the wrong box, and the controls start floating mid-scroll.
+   2. The entrance animates `.case__stage`, an outer wrapper under the title. The
+      transform is handed back when it settles, so the resting state of every
+      animated element is identical to its last animated frame — no jump.
+   3. The title is in normal flow at the top of the scroller: it scrolls away with
+      the case study. Only Share and Close stick, and they stick *inside* it.
+   4. The marquee moves on its own element (`.case__marquee-track`), so the
+      horizontal drift can never fight the vertical entrance over one transform.
+   5. Media frames reserve their aspect ratio and paint a sunken ground, so a slow
+      image never reflows the page or flashes white.
+
+   Direction: `padding-inline-end`, `inset-inline-end` and `border-inline-start`
+   throughout — the RTL panel is this sheet, not a mirror of it. The drift itself
+   flips sign in `marquee.ts`, where the reading direction is known.
+   ========================================================================== */
+@layer components {
+
+  .case {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-panel);
+  }
+
+  .case--document {
+    position: static;
+    z-index: auto;
+  }
+
+  .case__backdrop {
+    position: absolute;
+    inset: 0;
+    background: var(--surface);
+    opacity: 1;
+    will-change: opacity;
+  }
+
+  .case__panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+  }
+
+  .case--document .case__panel {
+    position: static;
+  }
+
+  /* Arming keeps the panel painted but invisible, so the reader never sees a frame of
+     content that has not been animated yet. */
+  .case[data-state='armed'] .case__backdrop { opacity: 0; }
+  .case[data-state='armed'] .case__panel { visibility: hidden; }
+
+  .case__scroller {
+    position: relative;
+    flex: 1 1 auto;
+    min-block-size: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .case--document .case__scroller {
+    overflow: visible;
+    flex: none;
+  }
+
+  /* --- sticky controls -----------------------------------------------------
+     Zero height so the row never pushes the title down; the bar overflows it
+     deliberately. `data-lenis-prevent` keeps the page smoother out of this box. */
+  .case__controls {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-controls);
+    block-size: 0;
+  }
+
+  .case__control-bar {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 18px var(--gutter) 0;
+  }
+
+  .case__control {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    block-size: 38px;
+    padding: 0 16px;
+    border: var(--line-w) solid var(--line-strong);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    backdrop-filter: blur(6px);
+    font-size: var(--text-ui);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    transition:
+      background var(--dur-hover) var(--ease-out-soft),
+      color var(--dur-hover) var(--ease-out-soft),
+      border-color var(--dur-hover) var(--ease-out-soft);
+  }
+
+  .case__control:is(:hover, :focus-visible) {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--ink-invert);
+  }
+
+  .case__control[aria-expanded='true'] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--ink-invert);
+  }
+
+  .case__control-glyph {
+    font-size: 0.9em;
+    line-height: 1;
+  }
+
+  /* --- share menu ---------------------------------------------------------- */
+  .case__share {
+    position: absolute;
+    inset-block-start: calc(100% + 8px);
+    inset-inline-end: var(--gutter);
+    z-index: var(--z-menu);
+    inline-size: max-content;
+    min-inline-size: 208px;
+    padding: 8px;
+    background: var(--surface);
+    border: var(--line-w) solid var(--line-strong);
+    transform-origin: top right;
+    animation: case-menu-in var(--dur-control) var(--ease-out-expo) both;
+  }
+
+  @media (max-width: 26.99rem) {
+    .case__share { inset-inline-end: 0; min-inline-size: 180px; }
+  }
+
+  @keyframes case-menu-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .case__share-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    inline-size: 100%;
+    padding: 10px 12px;
+    font-size: var(--text-ui);
+    text-align: start;
+    transition: background var(--dur-hover) var(--ease-out-soft);
+  }
+
+  .case__share-item:hover { background: var(--surface-sunken); }
+
+  .case__share-note {
+    padding: 8px 12px 4px;
+    font-size: var(--text-caption);
+    color: var(--ink-secondary);
+  }
+
+  /* --- title --------------------------------------------------------------
+     Measured after the fonts resolve; its height is reserved through
+     `--case-title-h` so nothing below it can overlap during the swap. */
+  .case__title {
+    position: relative;
+    min-block-size: var(--case-title-h, auto);
+    padding: clamp(72px, 10vh, 116px) var(--gutter) clamp(18px, 2.6vh, 34px);
+    padding-inline-end: calc(var(--gutter) + var(--case-control-inset));
+  }
+
+  .case--document .case__title { padding-block-start: clamp(28px, 5vh, 64px); }
+
+  .case__kicker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin-block-end: clamp(10px, 1.6vh, 18px);
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--ink-secondary);
+  }
+
+  .case__kicker span { white-space: nowrap; }
+
+  .case__marquee {
+    overflow: hidden;
+    inline-size: 100%;
+    max-inline-size: 100%;   /* the drift never contributes to page width */
+  }
+
+  .case__marquee-track {
+    display: flex;
+    align-items: baseline;
+    inline-size: max-content;
+    gap: var(--marquee-gap);
+    will-change: transform;
+  }
+
+  .case__title-text {
+    display: block;
+    white-space: nowrap;
+    font-size: var(--text-project-title);
+    line-height: var(--leading-title-tight);
+    letter-spacing: var(--tracking-tight);
+    font-weight: var(--weight-medium);
+  }
+
+  /* A title short enough to fit is set as normal text: the drift is a remedy for
+     overflow, and a two-copy marquee on a two-word title reads as a glitch. */
+  .case[data-marquee='false'] .case__marquee-track {
+    inline-size: auto;
+    white-space: normal;
+  }
+
+  .case[data-marquee='false'] .case__title-text {
+    white-space: normal;
+  }
+
+  /* --- stage --------------------------------------------------------------- */
+  .case__stage {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3vh, 40px);
+    position: relative;
+    padding: clamp(18px, 2.4vh, 30px) var(--gutter) clamp(48px, 10vh, 120px);
+    border-block-start: var(--line-w) solid var(--line-structural-color);
+    will-change: transform;
+  }
+
+  .case[data-state='switching'] .case__title,
+  .case[data-state='switching'] .case__stage { opacity: 0; }
+
+  .case__meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px 32px;
+    padding-block: clamp(20px, 3vh, 34px);
+  }
+
+  .case__meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .case__meta-key {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--ink-secondary);
+  }
+
+  .case__meta-value {
+    font-size: var(--text-body);
+    font-weight: var(--weight-medium);
+  }
+
+  .case__intro {
+    max-inline-size: var(--measure-prose);
+    font-size: var(--text-body-lg);
+    line-height: 1.5;
+    padding-block-end: clamp(28px, 4vh, 56px);
+  }
+
+  .case__body {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 4vh, 56px);
+  }
+
+  .case__related,
+  .case__inquiry {
+    border-block-start: var(--line-w) solid var(--line-structural-color);
+    padding-block-start: clamp(20px, 3vh, 32px);
+  }
+
+  /* --- media ---------------------------------------------------------------
+     `CmsImage` already reserves the aspect ratio, builds the `srcset` and paints its
+     own missing-media state, so the frame here only supplies the sunken ground: an
+     unloaded photograph must show a warm grey rectangle, never a white hole that
+     flashes as the image arrives. Nothing in this theme fades an image in with a
+     JS-set flag — a rule that depends on a script running would hide the photograph
+     for the readers the fallback exists for. */
+  .case__media,
+  .case__body .media-frame {
+    background: var(--surface-sunken);
+  }
+
+  .case__media { margin-block-end: clamp(24px, 4vh, 48px); }
+
+  .case__caption {
+    margin-block-start: 10px;
+    font-size: var(--text-caption);
+    color: var(--ink-secondary);
+  }
+
+  /* --- next work ----------------------------------------------------------- */
+  .case__next {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    inline-size: 100%;
+    margin-block-start: clamp(40px, 8vh, 96px);
+    padding: 22px 0;
+    border-block: var(--line-w) solid var(--line-structural-color);
+    font-size: var(--text-subheading);
+    text-align: start;
+    transition: padding-inline var(--dur-control) var(--ease-out-soft);
+  }
+
+  .case__next:is(:hover, :focus-visible) { padding-inline: 10px; }
+
+  .case__next-label {
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--ink-secondary);
+  }
+
+  /* --- background freeze ---------------------------------------------------
+     The mosaic stays exactly where it was: nothing is repositioned, so restoring
+     the scroll position on close is a no-op rather than a jump. */
+  html[data-case-open='true'],
+  body[data-case-open='true'] {
+    overflow: hidden;
+  }
+
+  @media (max-width: 44.99rem) {
+    .case__control-bar { gap: 8px; padding-block-start: calc(12px + env(safe-area-inset-top, 0px)); }
+    .case__control { block-size: 34px; padding: 0 12px; font-size: var(--text-caption); }
+    .case__meta { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; }
+    .case__title { padding-block-start: calc(clamp(64px, 12vh, 96px) + env(safe-area-inset-top, 0px)); }
+  }
+
+  /* Reduced motion: the theme's *resting* state is what is painted, so the only rule
+     needed here is that nothing is left half-transformed. `planReveal` already omits the
+     animation; `!important` covers a CSS-authored transition a future component adds. */
+  @media (prefers-reduced-motion: reduce) {
+    .case__title,
+    .case__stage,
+    .case__backdrop,
+    .case__panel,
+    .case__marquee-track {
+      animation: none !important;
+      transition-duration: 0.001ms !important;
+      transform: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+  }
+}
