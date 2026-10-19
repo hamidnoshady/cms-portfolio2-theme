@@ -1,0 +1,42 @@
+name: CI
+
+# The one gate. It runs on every pull request, and `publish-image.yml` calls it
+# (`workflow_call`) before building the GHCR image, so "the checks pass" has a single
+# definition. There is deliberately no `push: main` trigger: a merge starts the
+# publisher, which runs this workflow first -- adding the trigger would run it twice.
+#
+# `pnpm lint` is not part of the gate yet: it reports pre-existing findings inside
+# src/components/experience/* (see docs/CMS-SETUP.md, "Known gaps"). Add it here once
+# those are cleared.
+on:
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Typecheck, tests, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Tests
+        run: pnpm test
+      - name: Production build
+        run: pnpm build
