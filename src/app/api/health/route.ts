@@ -1,22 +1,16 @@
-import { NextResponse } from 'next/server'
+import { sql } from "drizzle-orm";
+import { cmsEnabled } from "@/lib/cms/client";
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
-/**
- * Process readiness for Coolify and the CMS deploy verifier.
- *
- * This route is deliberately self-contained: it does not import the CMS client, read a
- * tenant, warm a cache, redirect, or contact any remote service. A deployment can pass
- * its process health probe even while the CMS is temporarily unavailable, and the
- * renderer's stale CMS cache handles that outage separately.
- */
-export const GET = (): NextResponse =>
-  NextResponse.json(
-    { ok: true, status: 'ok' },
-    {
-      headers: {
-        'cache-control': 'no-store',
-      },
-      status: 200,
-    },
-  )
+export async function GET() {
+  // CMS mode has no database of its own; liveness of the process is the health signal.
+  if (cmsEnabled()) return Response.json({ ok: true });
+  try {
+    const { db } = await import("@/db");
+    await db.execute(sql`select 1`);
+    return Response.json({ ok: true });
+  } catch {
+    return Response.json({ ok: false }, { status: 500 });
+  }
+}

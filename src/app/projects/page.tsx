@@ -1,12 +1,14 @@
-import { PortfolioArchiveView, archiveMetadata, parseArchivePage } from '@/views/PortfolioArchiveView'
+import { ExperienceRoot } from "@/components/experience/experience-root";
+import { getExperienceData } from "@/lib/experience-data";
+import type { Metadata } from "next";
 
-export const generateMetadata = () => archiveMetadata('fa', 'projects')
+export const dynamic = "force-dynamic";
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams?: Promise<Record<string, string | string[] | undefined>>
-}) {
-  const resolved = searchParams ? await searchParams : {}
-  return <PortfolioArchiveView locale="fa" page={parseArchivePage(resolved.page)} section="projects" />
+export const metadata: Metadata = {
+  title: "Projects",
+};
+
+export default async function ProjectsPage() {
+  const data = await getExperienceData();
+  return <ExperienceRoot data={data} initialView={{ name: "index" }} />;
 }
